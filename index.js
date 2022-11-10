@@ -29,7 +29,16 @@ const exampleNetworks = require("./bike-networks");
       // ...
     ];
  */
-function getAllBikeNetworkNames() {}
+function getAllBikeNetworkNames(networks) {
+  let netArray = []
+  for (let i = 0; i < networks.length; i++) {
+    netArray.push(networks[i].name)
+    }
+  if(netArray.length === []){
+    return []
+  }
+    return netArray
+}
 
 /**
  * getAllBikeNetworksInTheUS()
@@ -57,7 +66,17 @@ function getAllBikeNetworkNames() {}
       // ...
     ]
  */
-function getAllBikeNetworksInTheUS() {}
+function getAllBikeNetworksInTheUS(networks) {
+  let netArray = []
+  for (let i = 0; i < networks.length; i++) {
+   if(networks[i].location.country === "US"){
+    netArray.push(networks[i])
+    } else if(netArray === []){
+        return []
+    }
+  }
+    return netArray
+}  
 
 /**
  * getBikeNetworkWithLowestLongitude()
@@ -86,7 +105,18 @@ function getAllBikeNetworksInTheUS() {}
       name: "BIKETOWN",
     }
  */
-function getBikeNetworkWithLowestLongitude() {}
+function getBikeNetworkWithLowestLongitude(networks) {
+  let netlong = 0
+  if(networks.location.longitude === ` `){
+    return `null`
+  } else {
+  for (let i = 0; i < networks.length; i++) {
+    if(networks[i].location.longitude < netlong){
+      return networks[i].name
+    }
+  }
+  }
+}
 
 /**
  * countByCountry()
@@ -104,7 +134,7 @@ function getBikeNetworkWithLowestLongitude() {}
       // ... 
     }
  */
-function countByCountry() {}
+function countByCountry(networks) {}
 
 /**
  * findById()
@@ -134,7 +164,17 @@ function countByCountry() {}
       name: "Indego",
     }
  */
-function findById() {}
+function findById(networks,id) {
+  let fullid = {}
+  for (let i = 0; i < networks.length; i++) {
+    if(networks === " " || networks.id !== id){
+      return null
+    }
+    else if(networks[i].id === id){
+      return networks[i]
+    }
+  }
+}
 
 /**
  * filterByCountry()
@@ -151,8 +191,20 @@ function findById() {}
       { name: "Monash BikeShare", ... },
     ]
  */
-function filterByCountry() {}
-
+function filterByCountry(networks,country) {
+  let countryarr = []
+  for (let i = 0; i < networks.length; i++) {
+    
+    if(networks[i].location.country !== country){
+    return []
+    } else {
+      if(networks.location.country === country){
+        countryarr.push(networks.location.country)
+      }
+    }
+  }
+  return countryarr
+}
 /**
  * transformNetworks()
  * -----------------------------
